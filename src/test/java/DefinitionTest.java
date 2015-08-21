@@ -8,6 +8,11 @@ public class DefinitionTest {
   public ClearRule clearRule = new ClearRule();
 
   @Test
+  public void instances_isEmptyBeforeInstantiation() {
+    assertEquals(0, Definition.all().size());
+  }
+
+  @Test
   public void definition_instantiatesCorrectly() {
     Definition testDef = new Definition("A building that people live in.");
     assertEquals(true, testDef instanceof Definition);
@@ -27,6 +32,9 @@ public class DefinitionTest {
 
   @Test
   public void getId_returnsDefinitionId() {
+    Definition.clear(); // Test currently fails without this, meaning that
+                        // there's a definition in instances that isn't getting
+                        // cleared. Not sure where/why (yet).
     Definition testDef = new Definition("A building that people live in.");
     assertEquals(1, testDef.getId());
   }
