@@ -45,4 +45,38 @@ public class AppTest extends FluentTest {
   // ^This doesn't work if I say goTo("http://localhost:4567/words/new");
   // Why is that?
 
+  @Test
+  public void homepage_navigatesToWordPage() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add a New Word"));
+    fill("#newWord").with("house");
+    submit(".btn");
+    click("a", withText("house"));
+    assertThat(pageSource()).contains("Definitions of house");
+  }
+
+  @Test
+  public void wordPage_navigatesToNewDefinitionForm() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add a New Word"));
+    fill("#newWord").with("house");
+    submit(".btn");
+    click("a", withText("house"));
+    click("a", withText("Add a New Definition"));
+    assertThat(pageSource()).contains("What is your definition of house?");
+  }
+
+  @Test
+  public void newDefinitionForm_addsDefToWordPage() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add a New Word"));
+    fill("#newWord").with("house");
+    submit(".btn");
+    click("a", withText("house"));
+    click("a", withText("Add a New Definition"));
+    fill("#newDef").with("A building that people live in.");
+    submit(".btn");
+    assertThat(pageSource()).contains("A building that people live in.");
+  }
+
 }
