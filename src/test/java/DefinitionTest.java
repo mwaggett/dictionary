@@ -32,6 +32,14 @@ public class DefinitionTest {
   }
 
   @Test
+  public void all_returnsAllInstancesOfDefinition_true() {
+    Definition testDef1 = new Definition("A building that people live in.");
+    Definition testDef2 = new Definition("A small rodent.");
+    assertTrue(Definition.all().contains(testDef1));
+    assertTrue(Definition.all().contains(testDef2));
+  }
+
+  @Test
   public void clear_clearsInstances() {
     Definition testDef = new Definition("A building that people live in.");
     Definition.clear();
