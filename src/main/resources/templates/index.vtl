@@ -1,8 +1,13 @@
-<h1>Home Page</h1>
-<form action='/newpage' method=''>
-  <div class='form-group'>
-    <label></label>
-    <input type="" name="" id="" class="form-control">
-  </div>
-  <button type="submit" id="" class='btn'>Submit!</button>
-</form>
+<h1>Dictionary!</h1>
+
+<div>
+  <ol>
+  #foreach($word in $words)
+    <li><a href="/words/$word.getId()">$word.getName()</a></li>
+  #end
+  </ol>
+</div>
+
+<div>
+  <a href="/words/new">Add a New Word</a>
+</div>
